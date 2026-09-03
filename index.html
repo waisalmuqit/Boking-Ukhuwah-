@@ -133,10 +133,8 @@ Catatan: ${catatan || '-'}`;
   document.getElementById('success').innerHTML =
     'Booking siap dikirim ke WhatsApp.';
 
-  window.open(
-    `https://wa.me/${nomorBarbershop}?text=${encodeURIComponent(pesan)}`,
-    '_blank'
-  );
+  window.location.href =
+  `https://wa.me/${nomorBarbershop}?text=${encodeURIComponent(pesan)}`;
 }
 
 </script>
