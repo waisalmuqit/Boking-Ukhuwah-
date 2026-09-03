@@ -36,17 +36,56 @@ button{border:0;background:linear-gradient(90deg,#0878ff,#12b8ff);font-weight:80
 
 <label>Pilih Capster</label>
 <select id="capster">
-<option>Fajrin</option><option>Ilham</option><option>Rio</option><option>Agil</option>
+<option>Fajrin</option><option>Ilham</option><option>Rio</option><option>agil</option>
 </select>
 
 <label>Layanan</label>
-<select id="layanan">
-<option>Hair Cut</option><option>Hair Cut + Styling</option><option>Beard Trim</option><option>Hair Cut + Beard</option>
-</select>
+<select id="layanan"
+  <option>Hair Cut 40 K</option>
+<option>Hair Cut Komplit 50 K</option>
+<option>Hair cut anak 40 K</option>
+<option>Hair Cut anak Komplit 50 K</option>
 
+<!-- CHEMICAL FULL SERVIS -->
+<option>Root Lift - 150K</option>
+<option>Down Perm - 200K</option>
+<option>Down Perm & Root Lift - 300K</option>
+<option>Cold Perm - 300K</option>
+<option>Curly - 300K</option>
+<option>Down Perm & Cold Perm - 350K</option>
 <label>Catatan</label>
-<input id="catatan" placeholder="Contoh: Low fade, jangan terlalu tipis">
+<input id="catatan" placeholder="Contoh:Model <label>Catatan Model Rambut</label>
 
+<select id="catatan">
+
+  <option>Buzz Cut</option>
+
+  <option>Low Fade</option>
+
+  <option>Medium Fade</option>
+
+  <option>High Fade</option>
+
+  <option>Burst Fade</option>
+
+  <option>Mullet</option>
+
+  <option>French Crop</option>
+
+  <option>Two Block</option>
+
+  <option>Warrior Cut</option>
+
+  <option>Comma Hair</option>
+
+  <option>Curtain</option>
+
+  <option>Long Trim</option>
+
+  <option>Wolf Cut</option>
+</select>
+<label>Catatan Tambahan</label>
+<input id="catatan" placeholder="Contoh: jangan terlalu tipis">
 <button onclick="booking()">BOOKING SEKARANG</button>
 <div id="success" class="success"></div>
 <div class="small">Jam operasional dapat disesuaikan. Nomor WhatsApp tujuan booking perlu diisi di bagian kode aplikasi.</div>
@@ -59,21 +98,46 @@ for(let h=10;h<=21;h++) for(let m of [0,30]){
   let x=document.createElement('option'); x.textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0'); jam.appendChild(x);
 }
 const t=new Date(); document.getElementById('tanggal').value=t.toISOString().slice(0,10);
-
 function booking(){
- const nama=document.getElementById('nama').value.trim(), wa=document.getElementById('wa').value.trim();
- if(!nama||!wa){alert('Silakan isi nama dan nomor WhatsApp.');return}
- const data={
-  nama,wa,tanggal:document.getElementById('tanggal').value,jam:jam.value,
-  capster:document.getElementById('capster').value,layanan:document.getElementById('layanan').value,
-  catatan:document.getElementById('catatan').value
- };
- const pesan=`Halo Ukhuwah Barbershop, saya ingin booking cukur.%0A%0ANama: ${encodeURIComponent(data.nama)}%0ATanggal: ${data.tanggal}%0AJam: ${data.jam}%0ACapster: ${encodeURIComponent(data.capster)}%0ALayanan: ${encodeURIComponent(data.layanan)}%0ACatatan: ${encodeURIComponent(data.catatan||'-')}`;
- // GANTI 628xxxxxxxxxx dengan nomor WhatsApp Barbershop Ukhuwah
- const nomorBarbershop='6285211665430';
- document.getElementById('success').style.display='block';
- document.getElementById('success').innerHTML='Booking siap dikirim. Setelah nomor WhatsApp Barbershop diisi di kode aplikasi, tombol ini akan langsung membuka WhatsApp.';
- window.open(`https://wa.me/${nomorBarbershop}?text=${pesan}`,'_blank');
+
+  const nama = document.getElementById('nama').value.trim();
+  const wa = document.getElementById('wa').value.trim();
+  const tanggal = document.getElementById('tanggal').value;
+  const jamPilihan = document.getElementById('jam').value;
+  const capster = document.getElementById('capster').value;
+  const layanan = document.getElementById('layanan').value;
+  const model = document.getElementById('model').value;
+  const catatan = document.getElementById('catatan').value.trim();
+
+  if(!nama || !wa){
+    alert('Silakan isi nama dan nomor WhatsApp.');
+    return;
+  }
+
+  const pesan =
+`Halo Ukhuwah Barbershop, saya ingin booking cukur.
+
+Nama: ${nama}
+No. WhatsApp: ${wa}
+Tanggal: ${tanggal}
+Jam: ${jamPilihan}
+Capster: ${capster}
+Layanan: ${layanan}
+Model Rambut: ${model}
+Catatan: ${catatan || '-'}`;
+
+  const nomorBarbershop = '6285211665430';
+
+  document.getElementById('success').style.display = 'block';
+
+  document.getElementById('success').innerHTML =
+    'Booking siap dikirim ke WhatsApp.';
+
+  window.open(
+    `https://wa.me/${nomorBarbershop}?text=${encodeURIComponent(pesan)}`,
+    '_blank'
+  );
 }
+
 </script>
 </body></html>
