@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Cukur — Ukhuwah Barbershop</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#07101f;color:#fff}
+.wrap{max-width:520px;margin:auto;padding:20px}
+.card{background:#101c30;border:1px solid #1f4f8f;border-radius:24px;padding:22px;box-shadow:0 15px 40px #0008}
+.logo{width:82px;height:82px;border-radius:50%;margin:auto;background:linear-gradient(145deg,#07101f,#0d3f92);display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900;color:#25a9ff;box-shadow:0 0 25px #008cff88}
+h1{text-align:center;margin:12px 0 4px;font-size:28px;letter-spacing:1px} .sub{text-align:center;color:#9fb5d3;margin-bottom:22px}
+label{display:block;margin:15px 0 7px;font-weight:700}input,select,button{width:100%;padding:14px;border-radius:12px;border:1px solid #315b91;background:#081426;color:#fff;font-size:16px}
+button{border:0;background:linear-gradient(90deg,#0878ff,#12b8ff);font-weight:800;margin-top:22px;cursor:pointer}
+.small{font-size:13px;color:#91a8c5;margin-top:12px;line-height:1.5}.success{display:none;margin-top:18px;padding:15px;border-radius:14px;background:#0b3828;border:1px solid #20b878}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.badge{display:inline-block;margin-top:8px;padding:6px 10px;border-radius:99px;background:#0c2e58;color:#54baff;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+<div class="logo">U</div>
+<h1>UKHUWAH</h1>
+<div class="sub">BARBERSHOP <span class="badge">BOOKING ONLINE</span></div>
+
+<label>Nama Pelanggan</label>
+<input id="nama" placeholder="Masukkan nama">
+
+<label>No. WhatsApp</label>
+<input id="wa" type="tel" placeholder="08xxxxxxxxxx">
+
+<div class="row">
+<div><label>Tanggal</label><input id="tanggal" type="date"></div>
+<div><label>Jam</label><select id="jam"></select></div>
+</div>
+
+<label>Pilih Capster</label>
+<select id="capster">
+<option>Fajrin</option><option>Ilham</option><option>Rio</option><option>Agil</option>
+</select>
+
+<label>Layanan</label>
+<select id="layanan">
+<option>Hair Cut</option><option>Hair Cut + Styling</option><option>Beard Trim</option><option>Hair Cut + Beard</option>
+</select>
+
+<label>Catatan</label>
+<input id="catatan" placeholder="Contoh: Low fade, jangan terlalu tipis">
+
+<button onclick="booking()">BOOKING SEKARANG</button>
+<div id="success" class="success"></div>
+<div class="small">Jam operasional dapat disesuaikan. Nomor WhatsApp tujuan booking perlu diisi di bagian kode aplikasi.</div>
+</div></div>
+
+<script>
+const jam=document.getElementById('jam');
+for(let h=10;h<=21;h++) for(let m of [0,30]){
+  if(h===21 && m===30) continue;
+  let x=document.createElement('option'); x.textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0'); jam.appendChild(x);
+}
+const t=new Date(); document.getElementById('tanggal').value=t.toISOString().slice(0,10);
+
+function booking(){
+ const nama=document.getElementById('nama').value.trim(), wa=document.getElementById('wa').value.trim();
+ if(!nama||!wa){alert('Silakan isi nama dan nomor WhatsApp.');return}
+ const data={
+  nama,wa,tanggal:document.getElementById('tanggal').value,jam:jam.value,
+  capster:document.getElementById('capster').value,layanan:document.getElementById('layanan').value,
+  catatan:document.getElementById('catatan').value
+ };
+ const pesan=`Halo Ukhuwah Barbershop, saya ingin booking cukur.%0A%0ANama: ${encodeURIComponent(data.nama)}%0ATanggal: ${data.tanggal}%0AJam: ${data.jam}%0ACapster: ${encodeURIComponent(data.capster)}%0ALayanan: ${encodeURIComponent(data.layanan)}%0ACatatan: ${encodeURIComponent(data.catatan||'-')}`;
+ // GANTI 628xxxxxxxxxx dengan nomor WhatsApp Barbershop Ukhuwah
+ const nomorBarbershop='6285211665430';
+ document.getElementById('success').style.display='block';
+ document.getElementById('success').innerHTML='Booking siap dikirim. Setelah nomor WhatsApp Barbershop diisi di kode aplikasi, tombol ini akan langsung membuka WhatsApp.';
+ window.open(`https://wa.me/${nomorBarbershop}?text=${pesan}`,'_blank');
+}
+</script>
+</body></html>
