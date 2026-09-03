@@ -36,115 +36,58 @@ button{border:0;background:linear-gradient(90deg,#0878ff,#12b8ff);font-weight:80
 
 <label>Pilih Capster</label>
 <select id="capster">
-<option>Fajrin</option><option>Ilham</option><option>Rio</option><option>agil</option>
+  <option>Fajrin</option>
+  <option>Ilham</option>
+  <option>Rio</option>
+  <option>Agil</option>
 </select>
 
 <label>Layanan</label>
-<select id="layanan"
+<select id="layanan">
   <option>Hair Cut 40 K</option>
-<option>Hair Cut Komplit 50 K</option>
-<option>Hair cut anak 40 K</option>
-<option>Hair Cut anak Komplit 50 K</option>
+  <option>Hair Cut Komplit 50 K</option>
+  <option>Hair cut anak 40 K</option>
+  <option>Hair Cut anak Komplit 50 K</option>
+  <option>Root Lift - 150K</option>
+  <option>Down Perm - 200K</option>
+  <option>Down Perm & Root Lift - 300K</option>
+  <option>Cold Perm - 300K</option>
+  <option>Curly - 300K</option>
+  <option>Down Perm & Cold Perm - 350K</option>
+</select>
 
-<!-- CHEMICAL FULL SERVIS -->
-<option>Root Lift - 150K</option>
-<option>Down Perm - 200K</option>
-<option>Down Perm & Root Lift - 300K</option>
-<option>Cold Perm - 300K</option>
-<option>Curly - 300K</option>
-<option>Down Perm & Cold Perm - 350K</option>
-<label>Catatan</label>
-<input id="catatan" placeholder="Contoh:Model <label>Catatan Model Rambut</label>
-
-<select id="catatan">
-
+<label>Model Rambut</label>
+<select id="model">
   <option>Buzz Cut</option>
-
   <option>Low Fade</option>
-
   <option>Medium Fade</option>
-
   <option>High Fade</option>
-
   <option>Burst Fade</option>
-
   <option>Mullet</option>
-
   <option>French Crop</option>
-
   <option>Two Block</option>
-
   <option>Warrior Cut</option>
-
   <option>Comma Hair</option>
-
   <option>Curtain</option>
-
   <option>Long Trim</option>
-
   <option>Wolf Cut</option>
 </select>
+
 <label>Catatan Tambahan</label>
 <input id="catatan" placeholder="Contoh: jangan terlalu tipis">
+
 <button type="button" onclick="booking()">BOOKING SEKARANG</button>
+
 <div id="success" class="success"></div>
-<div class="small">Jam operasional dapat disesuaikan. Nomor WhatsApp tujuan booking perlu diisi di bagian kode aplikasi.</div>
+
+<div class="small">
+  Jam operasional dapat disesuaikan
+</div>
+
 </div></div>
 
 <script>
-const jam=document.getElementById('jam');
-
-for(let h=10;h<=21;h++){
-  for(let m of [0,30]){
-    if(h===21 && m===30) continue;
-    let x=document.createElement('option');
-    x.textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
-    jam.appendChild(x);
-  }
-}
-
-const t=new Date();
-document.getElementById('tanggal').value=
-  t.getFullYear()+'-'+
-  String(t.getMonth()+1).padStart(2,'0')+'-'+
-  String(t.getDate()).padStart(2,'0');
-
 function booking(){
-
-  const nama=document.getElementById('nama').value.trim();
-  const wa=document.getElementById('wa').value.trim();
-  const tanggal=document.getElementById('tanggal').value;
-  const jamPilihan=document.getElementById('jam').value;
-  const capster=document.getElementById('capster').value;
-  const layanan=document.getElementById('layanan').value;
-  const model=document.getElementById('model').value;
-  const catatan=document.getElementById('catatan').value.trim();
-
-  if(!nama || !wa){
-    alert('Silakan isi Nama dan Nomor WhatsApp.');
-    return;
-  }
-
-  const pesan=
-`Halo Ukhuwah Barbershop, saya ingin booking cukur.
-
-Nama: ${nama}
-No. WhatsApp: ${wa}
-Tanggal: ${tanggal}
-Jam: ${jamPilihan}
-Capster: ${capster}
-Layanan: ${layanan}
-Model Rambut: ${model}
-Catatan: ${catatan || '-'}`;
-
-  const nomorBarbershop='6285211665430';
-
-  document.getElementById('success').style.display='block';
-  document.getElementById('success').innerHTML=
-    'Booking siap dikirim ke WhatsApp.';
-
-  window.location.href=
-    'https://wa.me/'+nomorBarbershop+
-    '?text='+encodeURIComponent(pesan);
+  alert('TOMBOL BOOKING BERFUNGSI');
 }
 </script>
